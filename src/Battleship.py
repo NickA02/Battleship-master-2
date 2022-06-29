@@ -50,7 +50,7 @@ class Battleship:
         #Direction vector for rotating when placing ships 
         self.shipDirectionVector = [0,1]
         #variable to keep track of the length of next placed ship
-        self.lenShip = 1
+        self.lenShip = 5
         #initialize the grid
         self.gridW = gridWrapper()
 
@@ -219,8 +219,8 @@ class Battleship:
         placedShips = 0
         p1Ships = []
         p2Ships = []
-        p1shipLengths = [2,3,3,4,5]
-        p2shipLengths = [2,3,3,4,5]
+        p1shipLengths = [2,3,3,4]
+        p2shipLengths = [2,3,3,4]
         print("\n===========================================\nPlayer 1 is now placing, look away player 2\nYou can press 'R' to rotate!\n===========================================\n")
         #game loop
         while 1:
@@ -244,10 +244,11 @@ class Battleship:
             
                     if P1Placing:
                         if self.checkValidShip(P1Placing, P2Placing, effectiveX, effectiveY):
-                            self.lenShip = p1shipLengths.pop()
                             tempShip = Ship()
                             self.placeShip(effectiveX, effectiveY, P1Placing, P2Placing, tempShip)
                             p1Ships.append(tempShip)
+                            if p1shipLengths:
+                                self.lenShip = p1shipLengths.pop()
                             placedShips += 1
                             #if player one finishes placing, reset things for player two's turn
                             if placedShips == self.numShipsPerPlayer:
@@ -256,16 +257,17 @@ class Battleship:
                                 self.shipDirectionVector[1] = 1
                                 P1Placing = False
                                 P2Placing = True
-                                self.lenShip = 1
+                                self.lenShip = 5
                         else:
                             print("P1: Invalid Ship!")
                     #if player two is placing, place the ship if it is valid
                     elif P2Placing:
                         if self.checkValidShip(P1Placing, P2Placing, effectiveX, effectiveY):
-                            self.lenShip = p2shipLengths.pop()
                             tempShip = Ship()
                             self.placeShip(effectiveX, effectiveY, P1Placing, P2Placing, tempShip)
                             p2Ships.append(tempShip)
+                            if p2shipLengths:
+                                self.lenShip = p2shipLengths.pop()
                             placedShips += 1
                         else:
                             print("P2: Invalid Ship!")
