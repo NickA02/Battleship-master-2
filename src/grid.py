@@ -44,7 +44,7 @@ class gridWrapper:
             p1_count=3
         if p1_count==10:
             p1_count=4
-        if p1_count==15:
+        if p1_count==17:
             p1_count=5  
             
         if p2_count==5 or p2_count==4 or p2_count==2:
@@ -55,7 +55,7 @@ class gridWrapper:
             p2_count=3
         if p2_count==10:
             p2_count=4
-        if p2_count==15:
+        if p2_count==17:
             p2_count=5
 
         if p1_count == win_count:
