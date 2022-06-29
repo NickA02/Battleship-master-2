@@ -346,7 +346,8 @@ def board_saver(board, x, y, player) -> None:
     
     y_string = ""
     for num in y_data:
-        y_string += str(num)
+        y_string += str(int(num))
+        print(num)
     header = ['board', 'next_move']
     data = {'board': flattened_board, 'next_move': y_string}
 
