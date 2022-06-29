@@ -1,4 +1,4 @@
-from matplotlib.cbook import flatten
+from time import sleep
 import pygame as pg
 import sys
 import math
@@ -288,6 +288,7 @@ class Battleship:
                                     print("\n=====================\nPlayer 1 sunk a ship!\n=====================\n")
                                 #save board from [0-10,0-10] and effectiveX,effectiveY
                                 board_saver(self.gridW.grid,effectiveX,effectiveY,1)
+                                sleep(0.01)
                         else:
                             print("P1: Invalid space!")
                     elif P2Shooting:
@@ -306,7 +307,7 @@ class Battleship:
                                     #self.channel2.play(self.sunk_sound)
                                     print("\n=====================\nPlayer 2 sunk a ship!\n=====================\n")
                                 #save board from [0-10,10-20] and effectiveX,effectiveY
-                                board_saver(self.gridW.grid,effectiveX,effectiveY,1)
+                                board_saver(self.gridW.grid,effectiveX,effectiveY,2)
                         else:
                             print("P2: Invalid space!")
             #If the game ends, break the loop and finish the program
@@ -321,7 +322,7 @@ def board_saver(board, x, y, player) -> None:
     flattened_board= ""
     y_data = np.zeros(81)
     if player == 1:
-        pos = (x-1) + ((y-1)*10)
+        pos = (x-1) + ((y-1)*9)
         y_data[pos] = 1
         for r in range(1,10):
             for c in range(1,10):
@@ -333,7 +334,7 @@ def board_saver(board, x, y, player) -> None:
                     flattened_board+="0"
 
     if player == 2:
-        pos = (x-1) + ((y-1)*10)
+        pos = (x-11) + ((y-1)*9)
         y_data[pos] = 1
         for r in range(1,10):
             for c in range(11,20):
@@ -347,15 +348,12 @@ def board_saver(board, x, y, player) -> None:
     y_string = ""
     for num in y_data:
         y_string += str(int(num))
-        print(num)
     header = ['board', 'next_move']
     data = {'board': flattened_board, 'next_move': y_string}
 
-    print(data)
-
-    with open('data.csv', 'w') as file:
+    with open('data.csv', 'a') as file:
         writer = csv.DictWriter(file, fieldnames=header)
-        writer.writeheader()
-        writer.writerows(data)
+        writer.writerow(data)
+        file.close()
     
 
