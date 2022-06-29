@@ -28,20 +28,7 @@ class Battleship:
         #set the name of the window
         pg.display.set_caption("Battleship")
         #get the number of ships per player, and protect from bad input
-        while 1: 
-            try: 
-                self.numShipsPerPlayer = int(input("How many ships per player? (1-5): "))
-                if self.numShipsPerPlayer > 5 or self.numShipsPerPlayer < 1:
-                    raise Exception("OutOfRange") 
-            except ValueError: 
-                print("Your input was not an integer. Please input an integer between 1 and 5.")
-            except Exception:
-                print("Please input an integer between 1 and 5.")
-            except:
-                print("Something went wrong. Exiting...")
-                quit()
-            else:
-                break
+        self.numShipsPerPlayer = 5
         #initialize the screen
         self.screen=pg.display.set_mode((c.WIN_X,c.WIN_Y))
         #
