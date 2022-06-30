@@ -1,5 +1,9 @@
 import pandas as pd
 import numpy as np
+from tensorflow import keras
+import matplotlib.pylab as plt
+from keras.models import Sequential
+from keras.layers import Dense, Activation
 
 pd.options.display.max_rows = 9999
 n = 5
@@ -42,3 +46,44 @@ for i in range(len(flattened_y)):
 
 p1x.pop()
 p2x.pop()
+
+
+model = Sequential()
+#model.add(Dense(81, activation='relu'))
+model.add(Dense(200, activation = 'relu'))
+model.add(Dense(81, activation='softmax'))
+
+model.compile(optimizer='adam',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+
+p1x = np.array(p1x)
+p1y = np.array(p1y)
+print(p1x.shape)
+print(p1y.shape)
+print(p1y.sum(axis=1))
+
+model.fit(p1x, p1y, batch_size=20, epochs=50, validation_split=0.1)
+model.summary()
+
+model.save('cb_ai.h5')
+
+model.evaluate(p1x, p1y)
+
+best_guesses = np.zeros(81)
+
+heat_map = np.reshape(best_guesses, (9, 9))
+
+fig, ax = plt.subplots(figsize=[10,10])
+im = ax.imshow(heat_map[:,:], cmap='gray', vmin=0, vmax=1)
+
+for i in range(9):
+    for j in range(9):
+        text = ax.text(j, i, np.format_float_positional(heat_map[i,j], precision=3),
+                       ha="center", va="center", color="blue")
+
+
+def model_predict(board):
+    best_guesses = model.predict(board)
+    new_best = np.reshape(best_guesses, (9,9))
+    print(zip(*np.where(new_best == 1)))
