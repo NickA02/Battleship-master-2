@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pylab as plt
 from keras.models import Sequential
 from keras.layers import Dense, Activation
+from numpy import unravel_index
 
 model = keras.models.load_model('hunt_ai.h5')
 
@@ -32,3 +33,5 @@ def model_predict(board):
     model = keras.models.load_model('hunt_ai.h5')
     best_guesses = model.predict(board)
     new_best = np.reshape(best_guesses, (9,9))
+    ret = unravel_index(new_best.argmax(), new_best.shape)
+    print(ret)

@@ -236,6 +236,8 @@ class Battleship:
                     if event.key == pg.K_r and (P1Placing or P2Placing):
                         self.rotateDirVec()
                 #when the user clicks, do one of three things
+                
+
                 if event.type == pg.MOUSEBUTTONDOWN:
                     #get the mouse position and convert it to an X/Y coordinate on the grid
                     mousePos = pg.mouse.get_pos()
