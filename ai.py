@@ -35,4 +35,3 @@ def model_predict(board):
     best_guesses = model.predict(board)
     new_best = np.reshape(best_guesses, (9,9))
     print(zip(*np.where(new_best == 1)))
-    
