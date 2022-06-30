@@ -4,6 +4,7 @@ from tensorflow import keras
 import matplotlib.pylab as plt
 from keras.models import Sequential
 from keras.layers import Dense, Activation
+from keras.layers import Dropout
 
 pd.options.display.max_rows = 9999
 n = 5
@@ -51,6 +52,7 @@ p2x.pop()
 model = Sequential()
 #model.add(Dense(81, activation='relu'))
 model.add(Dense(200, activation = 'relu'))
+model.add(Dropout(0.5))
 model.add(Dense(81, activation='softmax'))
 
 model.compile(optimizer='adam',
