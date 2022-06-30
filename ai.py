@@ -38,4 +38,26 @@ def model_predict(board):
     #best_guesses[unravel_index(best_guesses.argmax(), best_guesses.shape)] = 0
     new_best = np.reshape(best_guesses, (9,9))
     ret = unravel_index(new_best.argmax(), new_best.shape)
-    print(ret)
+    x3= str(ret[0] + 1) 
+    y = ret[1]
+    x2 = ""
+    if y == 0:
+        x2 = "A"
+    if y == 1:
+        x2 = "B"
+    if y == 2:
+        x2 = "C"
+    if y == 3:
+        x2 = "D"
+    if y == 4:
+        x2 = "E"
+    if y == 5:
+        x2 = "F"
+    if y == 6:
+        x2 = "G"
+    if y == 7:
+        x2 = "H"
+    if y == 8:
+        x2 = "I"
+    
+    print("(" + x2 + "," + x3 + ")")
