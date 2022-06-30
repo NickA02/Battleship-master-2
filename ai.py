@@ -27,10 +27,8 @@ plt.imshow(heat_map[:,:])"""
 #plt.colorbar()
 #plt.show()
 def model_predict(board):
-    print(board.shape)
     board = np.array(board)
     board = np.reshape(board, (1, 81))
     model = keras.models.load_model('hunt_ai.h5')
     best_guesses = model.predict(board)
     new_best = np.reshape(best_guesses, (9,9))
-    print(zip(*np.where(new_best == 1)))

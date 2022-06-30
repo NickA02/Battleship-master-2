@@ -293,8 +293,9 @@ class Battleship:
                                     #self.channel2.play(self.sunk_sound)
                                     print("\n=====================\nPlayer 1 sunk a ship!\n=====================\n")
                                 #save board from [0-10,0-10] and effectiveX,effectiveY
-                                board_saver(self.gridW.grid,effectiveX,effectiveY,1)
+                                
                                 sleep(0.01)
+                            board_saver(self.gridW.grid,effectiveX,effectiveY,1)
                         else:
                             print("P1: Invalid space!")
                     elif P2Shooting:
@@ -313,7 +314,7 @@ class Battleship:
                                     #self.channel2.play(self.sunk_sound)
                                     print("\n=====================\nPlayer 2 sunk a ship!\n=====================\n")
                                 #save board from [0-10,10-20] and effectiveX,effectiveY
-                                board_saver(self.gridW.grid,effectiveX,effectiveY,2)
+                            board_saver(self.gridW.grid,effectiveX,effectiveY,2)
                         else:
                             print("P2: Invalid space!")
             #If the game ends, break the loop and finish the program
