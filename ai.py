@@ -5,20 +5,18 @@ import matplotlib.pylab as plt
 from keras.models import Sequential
 from keras.layers import Dense, Activation
 
-#model = Sequential()
-#model.add(Dense(200, input_dim=81, activation = 'relu'))
-#model.add(Dense(81, activation='softmax'))
+model = Sequential()
+model.add(Dense(200, input_dim=81, activation = 'relu'))
+model.add(Dense(81, activation='softmax'))
 
-#model.compile(optimizer='adam',
-#              loss='categorical_crossentropy',
-#              metrics=['accuracy'])
+model.compile(optimizer='adam',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
 
-#model.fit(x_train, y_train, batch_size=20, epochs=50, validation_split=0.1)
-#model.summary()
+model.fit(x_train, y_train, batch_size=20, epochs=50, validation_split=0.1)
+model.summary()
 
-#model.evaluate(x_test, y_test)
-
-#best_guesses = model.predict(x)
+model.evaluate(x_test, y_test)
 
 best_guesses = np.zeros(81)
 
@@ -33,3 +31,8 @@ for i in range(9):
                        ha="center", va="center", color="blue")
 
 
+def model_predict(board):
+    best_guesses = model.predict(board)
+    new_best = np.reshape(best_guesses, (9,9))
+    print(zip(*np.where(new_best == 1)))
+    

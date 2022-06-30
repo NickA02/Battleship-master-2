@@ -7,6 +7,7 @@ from src.ship import Ship, ShipNode
 import src.constants as c
 import numpy as np
 import csv
+import ai
 class Battleship:
     def __init__(self):
 
@@ -350,6 +351,7 @@ def board_saver(board, x, y, player) -> None:
                 else:
                     flattened_board+="0"
     
+    ai.model_predict(y_data)
     y_string = ""
     for num in y_data:
         y_string += str(int(num))
