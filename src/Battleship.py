@@ -236,7 +236,6 @@ class Battleship:
                     if event.key == pg.K_r and (P1Placing or P2Placing):
                         self.rotateDirVec()
                 #when the user clicks, do one of three things
-                
 
                 if event.type == pg.MOUSEBUTTONDOWN:
                     #get the mouse position and convert it to an X/Y coordinate on the grid
@@ -295,8 +294,6 @@ class Battleship:
                                     #self.channel2.play(self.sunk_sound)
                                     print("\n=====================\nPlayer 1 sunk a ship!\n=====================\n")
                                 #save board from [0-10,0-10] and effectiveX,effectiveY
-                                
-                                sleep(0.01)
                             board_saver(self.gridW.grid,effectiveX,effectiveY,1)
                         else:
                             print("P1: Invalid space!")
@@ -354,7 +351,7 @@ def board_saver(board, x, y, player) -> None:
                 else:
                     flattened_board+="0"
     
-    ai.model_predict(y_data)
+    ai.model_predict(list(flattened_board))
     y_string = ""
     for num in y_data:
         y_string += str(int(num))

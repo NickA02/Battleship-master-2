@@ -28,10 +28,14 @@ plt.imshow(heat_map[:,:])"""
 #plt.colorbar()
 #plt.show()
 def model_predict(board):
+    for x in range(len(board)):
+        board[x] = int(board[x])
+        #print(board(x))
     board = np.array(board)
     board = np.reshape(board, (1, 81))
-    model = keras.models.load_model('hunt_ai.h5')
+    model = keras.models.load_model('cb_ai.h5')
     best_guesses = model.predict(board)
+    #best_guesses[unravel_index(best_guesses.argmax(), best_guesses.shape)] = 0
     new_best = np.reshape(best_guesses, (9,9))
     ret = unravel_index(new_best.argmax(), new_best.shape)
     print(ret)
