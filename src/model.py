@@ -8,15 +8,15 @@ df1 = pd.read_csv("checkerboard.csv", skiprows = skip_func, header = None)
 df2 = pd.read_csv("dia.csv", skiprows = skip_func, header = None)
 df3 = pd.read_csv("hunt.csv", skiprows = skip_func, header = None)
 
-flattened_x = np.array()
-flattened_y = np.array()
+flattened_x = []
+flattened_y = []
 for i in range(len(df1)):
     flattened_x.append(np.array([int(x) for x in list(df1.loc[i][0])]))
     flattened_y.append(np.array([int(x) for x in list(df1.loc[i][1])]))
     
-p1x = np.array()
+p1x = []
 p1x.append(np.zeros(81))
-p2x = np.array()
+p2x = []
 p2x.append(np.zeros(81))
 for i in range(len(flattened_x)):
     if i % 2 == 0:
@@ -25,15 +25,15 @@ for i in range(len(flattened_x)):
         p2x.append(flattened_x[i])
 
 for i in range(len(p1x)):
-    if np.count_nonzero() == 1:
+    if np.count_nonzero(1) + np.count_nonzero(2) == 1:
         p1x[i-1] = np.zeros(81)
 
 for i in range(len(p2x)):
-    if np.count_nonzero() == 1:
+    if np.count_nonzero(1) + np.count_nonzero(2) == 1:
         p2x[i-1] = np.zeros(81)
         
-p1y = np.array()
-p2y = np.array()
+p1y = []
+p2y = []
 for i in range(len(flattened_y)):
     if i % 2 == 0:
         p1y.append(flattened_y[i])
@@ -42,8 +42,3 @@ for i in range(len(flattened_y)):
 
 p1x.pop()
 p2x.pop()
-
-p1_df = pd.DataFrame(p1x, p1y, columns=['x', 'y'])
-p2_df = pd.DataFrame(p2x, p2y, columns=['x', 'y'])
-p1_df.to_csv("p1.csv")
-p2_df.to_csv("p2.csv")
