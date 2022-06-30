@@ -9,7 +9,7 @@ from keras.layers import Dropout
 pd.options.display.max_rows = 9999
 n = 5
 skip_func = lambda x: x%n != 0
-df1 = pd.read_csv("dia.csv", skiprows = skip_func, header = None)
+df1 = pd.read_csv("checkerboard.csv", skiprows = skip_func, header = None)
 
 
 flattened_x = []
@@ -70,5 +70,5 @@ model.fit(p1x, p1y, batch_size=20, epochs=50, validation_split=0.1)
 model.fit(p2x, p2y, batch_size=20, epochs=50, validation_split=0.1)
 model.summary()
 
-#model.save('dia.h5')
+model.save('cb_ai.h5')
 
