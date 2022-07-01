@@ -34,7 +34,7 @@ def model_predict(board):
         #print(board(x))
     board = np.array(board)
     board = np.reshape(board, (1, 81))
-    model = keras.models.load_model('hunt2_ai.h5')
+    model = keras.models.load_model('hunt3_ai.h5')
     best_guesses = model.predict(board)
     #best_guesses[unravel_index(best_guesses.argmax(), best_guesses.shape)] = 0
     new_best = np.reshape(best_guesses, (9,9))

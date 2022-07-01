@@ -10,11 +10,11 @@ from keras.metrics import TopKCategoricalAccuracy
 pd.options.display.max_rows = 9999
 n = 5
 skip_func = lambda x: x%n != 0
-df1 = pd.read_csv("checkerboard.csv", skiprows = skip_func, header = None)
-df2 = pd.read_csv("dia.csv", skiprows = skip_func, header = None)
-df3 = pd.read_csv("hunt.csv", skiprows = skip_func, header = None)
-df1.append(df2)
-df1.append(df3)
+#df1 = pd.read_csv("checkerboard.csv", skiprows = skip_func, header = None)
+#df2 = pd.read_csv("dia.csv", skiprows = skip_func, header = None)
+df1 = pd.read_csv("hunt.csv", skiprows = skip_func, header = None)
+#df1.append(df2)
+#df1.append(df3)
 
 
 flattened_x = []
@@ -57,6 +57,8 @@ model = Sequential()
 #model.add(Dense(81, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(200, activation = 'relu'))
+model.add(Dropout(0.5))
+model.add(Dense(200, activation = 'relu'))
 model.add(Dense(81, activation='softmax'))
 
 model.compile(optimizer='adam',
@@ -74,7 +76,7 @@ print(p1x.shape)
 print(p1y.shape)
 print(p1y.sum(axis=1))
 
-history = model.fit(x, y, batch_size=20, epochs=50, validation_split=0.1)
+history = model.fit(x, y, batch_size=20, epochs=100, validation_split=0.1)
 model.summary()
 
 plt.plot(history.history['accuracy'], label = 'Accuracy')
@@ -83,5 +85,5 @@ plt.plot(history.history['top_k_categorical_accuracy'], label = 'Top K Accuracy'
 plt.legend()
 plt.show()
 
-#model.save('all_ai.h5')
+model.save('hunt3_ai.h5')
 
