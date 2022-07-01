@@ -17,8 +17,8 @@ def gen_heat_map(preds):
 
 def check_if_invalid_position(x,y,board):
     board = np.reshape(board, (9,9))
-    if board[y][x] != 0:
-        print("Hit! Original guess: (" + str(y) + ', ' + str(x) + ')')
+    if board[x][y] != 0:
+        print("Hit! Original guess: (" + str(x) + ', ' + str(y) + ')')
         return True
     return False
 

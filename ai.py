@@ -34,14 +34,14 @@ def model_predict(board):
         #print(board(x))
     board = np.array(board)
     board = np.reshape(board, (1, 81))
-    model = keras.models.load_model('hunt_ai.h5')
+    model = keras.models.load_model('hunt2_ai.h5')
     best_guesses = model.predict(board)
     #best_guesses[unravel_index(best_guesses.argmax(), best_guesses.shape)] = 0
     new_best = np.reshape(best_guesses, (9,9))
     plot.gen_heat_map(new_best)
     ret = unravel_index(new_best.argmax(), new_best.shape)
     while plot.check_if_invalid_position(ret[0],ret[1],board):
-        new_best[ret[1]][ret[0]] = 0
+        new_best[ret[0]][ret[1]] = 0
         ret = unravel_index(new_best.argmax(), new_best.shape)
     x3= str(ret[0] + 1) 
     y = ret[1]
