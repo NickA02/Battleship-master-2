@@ -78,6 +78,7 @@ history = model.fit(x, y, batch_size=20, epochs=50, validation_split=0.1)
 model.summary()
 
 plt.plot(history.history['accuracy'], label = 'Accuracy')
+plt.plot(history.history['val_accuracy'], label = 'Test Accuracy')
 plt.plot(history.history['top_k_categorical_accuracy'], label = 'Top K Accuracy')
 plt.legend()
 plt.show()
