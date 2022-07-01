@@ -5,6 +5,7 @@ import matplotlib.pylab as plt
 from keras.models import Sequential
 from keras.layers import Dense, Activation
 from keras.layers import Dropout
+from keras.metrics import TopKCategoricalAccuracy
 
 pd.options.display.max_rows = 9999
 n = 5
@@ -62,7 +63,7 @@ model.add(Dense(81, activation='softmax'))
 
 model.compile(optimizer='adam',
               loss='categorical_crossentropy',
-              metrics=['accuracy'])
+              metrics=['accuracy','topk_categorical_accuracy'])
 
 p1x = np.array(p1x)
 p1y = np.array(p1y)
@@ -78,5 +79,5 @@ print(p1y.sum(axis=1))
 model.fit(x, y, batch_size=20, epochs=50, validation_split=0.1)
 model.summary()
 
-model.save('all_ai.h5')
+#model.save('all_ai.h5')
 

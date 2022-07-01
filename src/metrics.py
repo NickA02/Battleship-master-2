@@ -1,5 +1,5 @@
 from tensorflow import keras
-from keras.metrics import top_k_categorical_accuracy
-from keras.models import Sequential
+from keras.metrics import TopKCategoricalAccuracy
 
-inTop5 = lambda x, y : top_k_categorical_accuracy(x, y, k=5)
+#add topkcategoricalaccuracy to compile metrics
+#to print it out use name= field and plot it using plt.plot
