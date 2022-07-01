@@ -1,13 +1,5 @@
-import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras.metrics import accuracy_metrics
+from keras.metrics import top_k_categorical_accuracy
+from keras.models import Sequential
 
-
-tf.keras.metrics.TopKCategoricalAccuracy(
-    k=5, name="top_k_categorical_accuracy", dtype=None
-)
-"""
-model.compile(optimizer='sgd',
-              loss='mse',
-              metrics=[tf.keras.metrics.TopKCategoricalAccuracy()])
-"""
+inTop5 = lambda x, y : top_k_categorical_accuracy(x, y, k=5)
