@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from tensorflow import keras
 
+checck = 0
+
 def gen_heat_map(preds):
     """Generates Heat Map"""
 
@@ -15,8 +17,8 @@ def gen_heat_map(preds):
 
 def check_if_invalid_position(x,y,board):
     board = np.reshape(board, (9,9))
-    if board[x][y] != 0:
-        print("Hit! Original guess: (" + str(x) + ', ' + str(y) + ')')
+    if board[y][x] != 0:
+        print("Hit! Original guess: (" + str(y) + ', ' + str(x) + ')')
         return True
     return False
 
