@@ -7,7 +7,7 @@ checck = 0
 def gen_heat_map(preds):
     """Generates Heat Map"""
 
-    fig, ax = plt.subplots(figsize=[10,10])
+    fig, ax = plt.subplots(figsize=[5,5])
     for i in range(9):
         for j in range(9):
             text = ax.text(j, i, np.format_float_positional(preds[i][j], precision=3),
